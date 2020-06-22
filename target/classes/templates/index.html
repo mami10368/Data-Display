@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>DATA DISPLAY</title>
+<link rel="stylesheet" href="../static/bootstrap.css"
+	th:href="@{/bootstrap.css}" />
+<script type="text/javascript" src="/static/angular.min.js"
+	th:src="@{/angular.min.js}"></script>
+<script type="text/javascript" src="/static/app/app.module.js"
+	th:src="@{/app/app.module.js}"></script>
+<script type="text/javascript" src="/static/app/data.controller.js"
+	th:src="@{/app/data.controller.js}"></script>
+
+</head>
+<body data-ng-app="app" data-ng-controller="dataController as vm">
+	<header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Data display</a>
+				</div>
+				<p class="navbar-text navbar-right"
+					th:text="'Signed in as ' + ${username}" style="margin-right: 10px;">Signed
+					in as Anonymus</p>
+					<p class="navbar-text navbar-right"
+					th:text="${#dates.format(datetime, 'dd MMM yyyy HH:mm')}" style="margin-right: 10px;"></p>
+
+			</div>
+		</nav>
+	</header>
+
+	<div>
+		<div class="row">
+			<div class="col-lg-offset-2 col-lg-8">
+				<div class="btn-group" role="group">
+					<button data-ng-click="vm.getAll()" type="button"
+						class="btn btn-default">All</button>
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Day</th>
+							<th>Month</th>
+							<th>Year</th>
+							<th>Hour</th>
+							<th>Minutes</th>
+							<th>Seconds</th>
+							<th>Value</th>
+							<th>Country</th>
+							<th style="width: 90px"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-ng-repeat="data in vm.data">
+							<td>{{data.day}}</td>
+							<td>{{data.month}}</td>
+							<td>{{data.year}}</td>
+							<td>{{data.hour}}</td>
+							<td>{{data.minutes}}</td>
+							<td>{{data.seconds}}</td>
+							<td>{{data.value}}</td>
+							<td>{{data.country}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
